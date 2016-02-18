@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "riot": "^2.3.5",
     "aws-sdk": "^2.2.36",
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
