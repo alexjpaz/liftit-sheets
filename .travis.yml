@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '0.10'
+- 'iojs'
 deploy:
   provider: s3
   access_key_id: AKIAJSPSM4LGFEO7QAQQ

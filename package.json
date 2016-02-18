@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "gulp build"
+    "test": "node_modules/mocha/bin/mocha && gulp build"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "gulp-connect": "^2.3.1",
     "gulp-riot": "^0.4.5",
     "gulp-watch": "^4.3.5",
+    "jsdom": "^8.0.3",
     "mocha": "^2.4.5",
     "require-dir": "^0.3.0"
   }
