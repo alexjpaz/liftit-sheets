@@ -1,16 +1,15 @@
-<month>
-  11
-  <table>
-  <table>
+<app>
+  { foo }
+  <month></month>
   <style scoped>
     h3 {
       font-size: px;
     }
   </style>
   <script>
-    this.foo = 5;
+    this.foo = foo;
     this.hi = function() {
       return 42;
     };
   </script>
-</month>
+</app>

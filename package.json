@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "gulp serve",
     "test": "node_modules/mocha/bin/mocha && gulp build"
   },
   "author": "",

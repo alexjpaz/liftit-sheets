@@ -8,12 +8,14 @@
     <title>Liftit Sheets</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
   <body>
-    <block-month></block-month>
+    <app></app>
+    <script src='api.js'></script>
     <script src="//cdn.jsdelivr.net/riot/2.3/riot.min.js"></script>
     <script src="tags.tag"></script>
     <script>
-      riot.mount('*')
+      riot.mount('*', liftit);
     </script>
   </body>
 </html>
