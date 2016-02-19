@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "gulp serve",
-    "test": "node_modules/mocha/bin/mocha && gulp build"
+    "dev": "node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --content-base dist/",
+    "test": "node_modules/webpack/bin/webpack.js && node_modules/mocha/bin/mocha"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "riot": "^2.3.5",
     "aws-sdk": "^2.2.36",
     "chai": "^3.5.0",
+    "file-loader": "^0.8.5",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.3.1",
@@ -20,6 +20,9 @@
     "gulp-watch": "^4.3.5",
     "jsdom": "^8.0.3",
     "mocha": "^2.4.5",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "riot": "^2.3.5",
+    "webpack": "^1.12.13",
+    "webpack-dev-server": "^1.14.1"
   }
 }
