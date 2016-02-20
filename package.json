@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --content-base dist/",
-    "test": "node_modules/webpack/bin/webpack.js && node_modules/mocha/bin/mocha"
+    "test": "node_modules/webpack/bin/webpack.js --bail && node_modules/mocha/bin/mocha"
   },
   "author": "",
   "license": "ISC",
