@@ -1,5 +1,4 @@
 <month>
-  11
   <table>
   <table>
   <style scoped>

@@ -1,13 +1,18 @@
+require('./month.tag');
+require('./bottom.tag');
+
 <app>
   { foo }
+  { opts.version }
   <month></month>
+  <bottom></bottom>
   <style scoped>
     h3 {
       font-size: px;
     }
   </style>
   <script>
-    this.foo = foo;
+    this.foo = opts.foo;
     this.hi = function() {
       return 42;
     };
