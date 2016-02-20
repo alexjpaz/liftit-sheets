@@ -19,6 +19,7 @@
     "gulp-riot": "^0.4.5",
     "gulp-watch": "^4.3.5",
     "jsdom": "^8.0.3",
+    "liftit-common": "git+https://github.com/alexjpaz/liftit-common.git",
     "mocha": "^2.4.5",
     "require-dir": "^0.3.0",
     "riot": "^2.3.5",
