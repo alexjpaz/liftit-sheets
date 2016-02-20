@@ -22,6 +22,7 @@
     "mocha": "^2.4.5",
     "require-dir": "^0.3.0",
     "riot": "^2.3.5",
+    "riotjs-loader": "^1.2.0",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"
   }

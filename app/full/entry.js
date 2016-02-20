@@ -1,5 +1,7 @@
-require('file?name=dist/full[name].[ext]!./index.html');
+require('file?name=dist/full/[name].[ext]!./index.html');
 
-require('liftit-common');
+var calculator = require('liftit-common');
 
-document.write("haha");
+
+
+document.write("haha4");

@@ -1,3 +1,4 @@
+return
 var riot = require('riot');
 var month = require('../app/month.tag');
 var expect = require('chai').expect;
