@@ -62,9 +62,9 @@ function handleTouchMove(evt) {
         }
     } else {
         if ( yDiff > 0 ) {
-          liftPos++;
+          liftPos = liftPos++ % self.liftOrder.length;
         } else {
-          liftPos--;
+          liftPos = liftPos-- % self.liftOrder.length;
         }
     }
     /* reset values */
@@ -73,9 +73,7 @@ function handleTouchMove(evt) {
 };
 
 function handleTouchEnd(e) {
-  setTimeout(function() {
     location.href = '#'+self.liftOrder[liftPos];
-  }, 100);
 }
 
 function jump(h){
@@ -86,11 +84,21 @@ function jump(h){
 
   </script>
   <style>
-app > section {
-  background: blue;
-  width: 100%;
-  height: 100%;
-}
+    app > section {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: -100%;
+      left: 0;
+      display: none
+      border: 1px solid red;
+      transition:.6s all;
+    }
+
+    app > section:target {
+      display: block;
+      top: 0;
+    }
 
     app {
       display: block;
