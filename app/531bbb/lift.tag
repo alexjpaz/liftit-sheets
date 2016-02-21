@@ -1,9 +1,8 @@
 <lift>
-11111
-  <section id={opts.name}0>{opts.name}0</section>
-  <section id={opts.name}1>{opts.name}1</section>
-  <section id={opts.name}2>{opts.name}2</section>
-  <section id={opts.name}3>{opts.name}3</section>
+  <section id={opts.name}0>{opts.name}3x5</section>
+  <section id={opts.name}1>{opts.name}3x3</section>
+  <section id={opts.name}2>{opts.name}531</section>
+  <section id={opts.name}3>{opts.name}DL</section>
   <style scoped>
     span {
       color: white;

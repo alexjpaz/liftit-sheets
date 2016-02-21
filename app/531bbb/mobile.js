@@ -27,10 +27,10 @@ function mobile(context) {
 
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
       if ( xDiff > 0 ) {
-        screenX = --screenX % 4;
+        screenX = ++screenX % 4;
         /* left swipe */
       } else {
-        screenX = ++screenX % 4;
+        screenX = --screenX % 4;
         /* right swipe */
       }
     } else {
