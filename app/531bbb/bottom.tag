@@ -1,4 +1,5 @@
 
 <bottom>
-  <p>liftit-sheets</p>
+  { opt.version }
+  <p>liftit-sheets { version }</p>
 </bottom>
