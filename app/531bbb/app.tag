@@ -3,8 +3,9 @@ require('./bottom.tag');
 require('./week.tag');
 require('./lift.tag');
 
+
 <app>
-<section each={l, i in lifts} name={l.name} id='{ l.name }'>
+  <section each={l, i in lifts} name={l.name}>
     <lift name={l.name}></lift>
   </section>
   <script>
@@ -28,66 +29,13 @@ require('./lift.tag');
       lift.weight = opts.getURLParameter(lift.name);
     });
 
-
-document.addEventListener('touchstart', handleTouchStart, false);
-document.addEventListener('touchmove', handleTouchMove, false);
-document.addEventListener('touchend', handleTouchEnd, false);
-
-var xDown = null;
-var yDown = null;
-var direction = null;
-var liftPos = 0;
-
-function handleTouchStart(evt) {
-    xDown = evt.touches[0].clientX;
-    yDown = evt.touches[0].clientY;
-};
-
-function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
-        return;
-    }
-
-    var xUp = evt.touches[0].clientX;
-    var yUp = evt.touches[0].clientY;
-
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-        if ( xDiff > 0 ) {
-            /* left swipe */
-        } else {
-            /* right swipe */
-        }
-    } else {
-        if ( yDiff > 0 ) {
-          liftPos = liftPos++ % self.liftOrder.length;
-        } else {
-          liftPos = liftPos-- % self.liftOrder.length;
-        }
-    }
-    /* reset values */
-    xDown = null;
-    yDown = null;
-};
-
-function handleTouchEnd(e) {
-    location.href = '#'+self.liftOrder[liftPos];
-}
-
-function jump(h){
-  var url = location.href;               //Save down the URL without hash.
-  location.href = "#"+h;                 //Go to the target element.
-  history.replaceState(null,null,url);   //Don't like hashes. Changing it back.
-}
-
+    this.api.mobile(this);
   </script>
   <style>
-    app > section {
+    app  section {
       width: 100%;
       height: 100%;
-      position: absolute;
+      position: fixed;
       top: -100%;
       left: 0;
       display: none
@@ -95,7 +43,7 @@ function jump(h){
       transition:.6s all;
     }
 
-    app > section:target {
+    app  section:target {
       display: block;
       top: 0;
     }
