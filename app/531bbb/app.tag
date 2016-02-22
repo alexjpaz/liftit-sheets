@@ -13,9 +13,9 @@ require('./lift.tag');
       <li><a href='#squat3x5'>S</a></li>
     </ul>
   </nav>
-  <section each={l, i in lifts} name={l.name}>
+  <div each={l, i in lifts} name={l.name}>
     <lift name={l.name} api={parent.api}></lift>
-  </section>
+  </div>
   <script>
     var self = this;
     var api = this.api = opts;
@@ -39,8 +39,8 @@ require('./lift.tag');
         position: fixed;
         top: -100%;
         left: 0;
-        display: block;
-        transition:.6s all;
+        transition: .6s all;
+        visibility: hidden;
       }
 
       app nav.default {
@@ -64,13 +64,14 @@ require('./lift.tag');
       app nav.default ul li a {
         height: 40px;
         background: white;
-          display: block;
+        display: block;
         width: 40px;
       }
 
-      app  section:target {
-        display: block;
+      app section:target {
+        display: block !important;
         top: 0;
+        visibility: visible;
       }
 
       app {
