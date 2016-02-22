@@ -68,12 +68,15 @@ function mobile(context) {
       screenY = 0;
     }
     screenY = screenY % liftOrderLength;
+    context.swipeDirection = 'up';
+    context.update();
   }
 
   function handleDown() {
     screenY = screenY + 1;
     screenY = screenY % liftOrderLength;
-
+    context.swipeDirection = 'down';
+    context.update();
   }
 
   function handleLeft() {
@@ -83,12 +86,18 @@ function mobile(context) {
       screenX = 0;
     }
     screenX = screenX % weekOrderLength;
+    context.swipeDirection = 'left';
+    context.update();
   }
 
   function handleRight() {
     console.log('right', arguments);
     screenX = screenX + 1;
     screenX = screenX % weekOrderLength;
+
+    context.swipeDirection = 'right';
+    context.update();
+
   }
 }
 

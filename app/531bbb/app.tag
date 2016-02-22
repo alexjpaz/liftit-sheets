@@ -4,7 +4,7 @@ require('./week.tag');
 require('./lift.tag');
 
 
-<app>
+<app class='swipe-direction--{ swipeDirection }'>
   <nav class='default'>
     <ul>
       <li><a href='#press3x5'>P</a></li>
@@ -37,7 +37,6 @@ require('./lift.tag');
       app  section {
         width: 100%;
         position: fixed;
-        top: -100%;
         left: 0;
         transition: .6s all;
         visibility: hidden;
@@ -68,10 +67,26 @@ require('./lift.tag');
         width: 40px;
       }
 
+      app.swipe-direction--left section {
+        transform: translate(-300%,0);
+      }
+
+      app.swipe-direction--right section {
+        transform: translate(300%,0);
+      }
+
+      app.swipe-direction--up section {
+        transform: translate(0,300%);
+      }
+
+      app.swipe-direction--down section {
+        transform: translate(0,-300%);
+      }
+
       app section:target {
         display: block !important;
-        top: 0;
         visibility: visible;
+        transform: translate(0,0);
       }
 
       app {
