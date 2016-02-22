@@ -12,4 +12,26 @@ api.getURLParameter = function(name) {
 
 api.mobile = mobile;
 
+api.liftOrder = [
+  'press',
+  'deadlift',
+  'bench',
+  'squat'
+];
+
+api.weekOrder = [
+  '3x5',
+  '3x3',
+  '531',
+  'DL'
+];
+
+api.lifts = [
+  {'name': 'press'},
+  {'name': 'deadlift'},
+  {'name': 'bench'},
+  {'name': 'squat'},
+];
+
+
 riot.mount('*', api);

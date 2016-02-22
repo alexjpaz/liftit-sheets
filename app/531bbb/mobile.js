@@ -1,4 +1,8 @@
 function mobile(context) {
+
+  var liftOrderLength = context.liftOrder.length;
+  var weekOrderLength = context.weekOrder.length;
+
   document.addEventListener('touchstart', handleTouchStart, false);
   document.addEventListener('touchmove', handleTouchMove, false);
   document.addEventListener('touchend', handleTouchEnd, false);
@@ -25,38 +29,66 @@ function mobile(context) {
     var xDiff = xDown - xUp;
     var yDiff = yDown - yUp;
 
+    var handler = function(){ /* noop */ };
+
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
       if ( xDiff > 0 ) {
-        screenX = ++screenX % 4;
-        /* left swipe */
+        handler = handleLeft;
       } else {
-        screenX = --screenX % 4;
-        /* right swipe */
+        handler = handleRight;
       }
     } else {
       if ( yDiff > 0 ) {
-        screenY = --screenY % context.liftOrder.length;
-        screenX = 0;
+        handler = handleUp;
       } else {
-        screenY = ++screenY % context.liftOrder.length;
-        screenX = 0;
+        handler = handleDown;
       }
     }
+    /* invoke */
+    handler(evt, xUp, yUp, xDiff, yDiff);
     /* reset values */
     xDown = null;
     yDown = null;
   };
 
   function handleTouchEnd(e) {
-    console.log(screenX);
-    location.href = '#'+context.liftOrder[screenY] + '' + screenX;
-
+    console.log('handleTouchEnd', screenX, screenY);
+    location.href = '#'+context.liftOrder[screenY] + '' + context.weekOrder[screenX];
   }
 
   function jump(h){
     var url = location.href;               //Save down the URL without hash.
     location.href = "#"+h;                 //Go to the target element.
     history.replaceState(null,null,url);   //Don't like hashes. Changing it back.
+  }
+
+  function handleUp() {
+    screenY = screenY - 1;
+    if(screenY < 0) {
+      screenY = 0;
+    }
+    screenY = screenY % liftOrderLength;
+  }
+
+  function handleDown() {
+    screenY = screenY + 1;
+    screenY = screenY % liftOrderLength;
+
+  }
+
+  function handleLeft() {
+    console.log('right', arguments);
+    screenX = screenX - 1;
+    if(screenX < 0) {
+      screenX = 0;
+    }
+    screenX = screenX % weekOrderLength;
+  }
+
+  function handleRight() {
+    console.log('right', arguments);
+    screenX = screenX + 1;
+    screenX = screenX % weekOrderLength;
   }
 }
 
