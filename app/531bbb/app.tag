@@ -5,14 +5,14 @@ require('./lift.tag');
 
 
 <app>
-  <section class='default'>
+  <nav class='default'>
     <ul>
-      <li><a href='#press0'>P</a></li>
-      <li><a href='#deadlift0'>D</a></li>
-      <li><a href='#bench0'>B</a></li>
-      <li><a href='#squat0'>S</a></li>
-    </ul>  </section>
-  </section>
+      <li><a href='#press3x5'>P</a></li>
+      <li><a href='#deadlift3x5'>D</a></li>
+      <li><a href='#bench3x5'>B</a></li>
+      <li><a href='#squat3x5'>S</a></li>
+    </ul>
+  </nav>
   <section each={l, i in lifts} name={l.name}>
     <lift name={l.name} api={parent.api}></lift>
   </section>
@@ -36,19 +36,36 @@ require('./lift.tag');
     @media (max-width: 600px) {
       app  section {
         width: 100%;
-        height: 100%;
         position: fixed;
         top: -100%;
         left: 0;
-        display: none
-        border: 1px solid red;
+        display: block;
         transition:.6s all;
       }
 
+      app nav.default {
+        bottom: 0;
+        position: absolute;
+      }
 
+      app nav.default ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
 
-      app section.default {
-        top: 0;
+      app nav.default ul li {
+        margin: 0;
+        padding: 0;
+        float: left;
+
+      }
+
+      app nav.default ul li a {
+        height: 40px;
+        background: white;
+          display: block;
+        width: 40px;
       }
 
       app  section:target {
