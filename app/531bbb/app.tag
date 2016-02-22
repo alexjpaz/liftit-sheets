@@ -4,7 +4,10 @@ require('./week.tag');
 require('./lift.tag');
 
 
-<app class='swipe-direction--{ swipeDirection }'>
+<app class='swipe-direction--{ swipeDirection || "up" }'>
+  <row each={l, i in lifts} name={l.name}>
+    <lift name={l.name} api={parent.api}></lift>
+  </row>
   <nav class='default'>
     <ul>
       <li><a href='#press3x5'>P</a></li>
@@ -13,9 +16,6 @@ require('./lift.tag');
       <li><a href='#squat3x5'>S</a></li>
     </ul>
   </nav>
-  <div each={l, i in lifts} name={l.name}>
-    <lift name={l.name} api={parent.api}></lift>
-  </div>
   <script>
     var self = this;
     var api = this.api = opts;
@@ -32,8 +32,18 @@ require('./lift.tag');
 
     this.api.mobile(this);
   </script>
-  <style>
-    @media (max-width: 600px) {
+  <style >
+    @media (min-width: 992px), print {
+      row {
+        display: block;
+        overflow: hidden;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    }
+    @media screen and (max-width: 992px) {
       app  section {
         width: 100%;
         position: fixed;
