@@ -1,5 +1,9 @@
 <week>
+
   <table>
+    <tr>
+      <td>{ opts.type }</td>
+    </tr>
     <tr>
       <td each={ lb in liftit.config.plates }>
         {lb}
@@ -11,12 +15,14 @@
       </td>
     </tr>
   <table>
-  <pre>{ JSON.stringify(this.derp, null, 4) }</pre>
   <script>
-    var liftit = this.liftit = opts.api.liftit;
+    var self = this;
+   var liftit = this.liftit = require('liftit-common');
 
-    this.rows = [
-      liftit.plates(opts.weight)
-    ];
+    this.rows = [];
+
+    liftit.config.weekMap[opts.type].forEach(function(w) {
+      self.rows.push(liftit.plates(opts.weight * w));
+    });
   </script>
 </week>

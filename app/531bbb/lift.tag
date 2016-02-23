@@ -1,7 +1,8 @@
+
 <lift>
   <section each={ w in api.weekOrder } id="{parent.opts.name}{w}">
     <card>
-      <strong>{parent.opts.name}{w}</strong>
+      <week weight='100' type={w}></week>
     </card>
   </section>
   <script>
