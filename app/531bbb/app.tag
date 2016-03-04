@@ -6,7 +6,7 @@ require('./lift.tag');
 
 <app class='swipe-direction--{ swipeDirection || "up" }'>
   <row each={l, i in lifts} name={l.name}>
-    <lift name={l.name} api={parent.api}></lift>
+    <lift name={l.name} weight={l.weight} api={parent.api}></lift>
   </row>
   <nav class='default'>
     <ul>
