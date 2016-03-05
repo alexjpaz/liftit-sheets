@@ -9,11 +9,13 @@ require('./lift.tag');
     <lift name={l.name} weight={l.weight} api={parent.api}></lift>
   </row>
   <nav class='default'>
-    <ul>
-      <li><a href='#press3x5'>P</a></li>
-      <li><a href='#deadlift3x5'>D</a></li>
-      <li><a href='#bench3x5'>B</a></li>
-      <li><a href='#squat3x5'>S</a></li>
+    <ul each={l in lifts} class='{ l.name }'>
+      <li>
+        <strong>{ l. name }</strong>
+        <a href='#{ l.name }3x5'>3x5</a>
+        <a href='#{ l.name }3x3'>3x3</a>
+        <a href='#{ l.name }531'>531</a>
+      </li>
     </ul>
   </nav>
   <script>
@@ -28,6 +30,7 @@ require('./lift.tag');
 
     this.lifts.forEach(function(lift) {
       lift.weight = opts.getURLParameter(lift.name);
+      console.log(lift.weight)
     });
 
     this.api.mobile(this);
@@ -42,6 +45,10 @@ require('./lift.tag');
       * {
         box-sizing: border-box;
       }
+
+      app.nav.default {
+        display: none;
+      }
     }
     @media screen and (max-width: 992px) {
       app  section {
@@ -55,6 +62,7 @@ require('./lift.tag');
       app nav.default {
         bottom: 0;
         position: absolute;
+        background: white;
       }
 
       app nav.default ul {
@@ -70,12 +78,32 @@ require('./lift.tag');
 
       }
 
-      app nav.default ul li a {
-        height: 40px;
-        background: white;
-        display: block;
-        width: 40px;
+
+      app nav.default ul li strong {
+        display: inline-block;
+          width: 100px;
       }
+
+      app nav.default ul li a {
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        width: 40px;
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+      }
+
+
+
+      app nav.default ul {
+        overflow: hidden;
+        color: white;
+      }
+      app nav.default ul.press { background: red; }
+      app nav.default ul.deadlift { background: green; }
+      app nav.default ul.bench { background: blue; }
+      app nav.default ul.squat { background: orange; }
 
       app.swipe-direction--left section {
         transform: translate(-300%,0);
@@ -102,7 +130,6 @@ require('./lift.tag');
       app {
         display: block;
         position: absolute;
-        background: #ffaaaa;
         width: 100%;
         height: 100%;
       }

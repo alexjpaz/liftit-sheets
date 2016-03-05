@@ -1,7 +1,7 @@
 
 <lift>
   <section each={ w in api.weekOrder } id="{parent.opts.name}{w}">
-    <card>
+    <card class='{ parent.opts.name }'>
       <week weight={parent.opts.weight} type={w}></week>
     </card>
   </section>
@@ -10,12 +10,18 @@
   </script>
   <style>
 
-    @media (min-width: 992px), print {
-      lift {        color: blue;
-        color: blue;
-        background: red;
-        display: block
+    card {
+      display: block;
+    }
 
+    card.press { background: red }
+    card.deadlift { background: green }
+    card.bench { background: blue }
+    card.squat { background: orange }
+
+    @media (min-width: 992px), print {
+      lift {
+        display: block
       }
 
       lift > section {
@@ -24,10 +30,10 @@
         width: 24%;
         margin-bottom: 20px;
         margin-right: 1%;
+
       }
 
       section:target {
-        background: red;
       }
     }
 
@@ -36,7 +42,6 @@
       card {
         position: relative;
         display: block;
-        background: blue;
         margin: 8px;
         padding: 8px;
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
