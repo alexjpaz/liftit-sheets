@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors --content-base dist/",
+    "dev": "./tasks dev",
     "test": "node_modules/webpack/bin/webpack.js --bail && node_modules/mocha/bin/mocha"
   },
   "author": "",

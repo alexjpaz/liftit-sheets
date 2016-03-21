@@ -3,11 +3,11 @@ require('./bottom.tag');
 require('./week.tag');
 require('./lift.tag');
 
-
 <app class='swipe-direction--{ swipeDirection || "up" }'>
   <row each={l, i in lifts} name={l.name}>
     <lift name={l.name} weight={l.weight} api={parent.api}></lift>
   </row>
+  <p>{ date }</p>
   <nav class='default'>
     <ul each={l in lifts} class='{ l.name }'>
       <li>
@@ -28,9 +28,10 @@ require('./lift.tag');
 
     this.lifts = api.lifts;
 
+    this.date = opts.getURLParameter('date') || new Date();
+
     this.lifts.forEach(function(lift) {
       lift.weight = opts.getURLParameter(lift.name);
-      console.log(lift.weight)
     });
 
     this.api.mobile(this);
