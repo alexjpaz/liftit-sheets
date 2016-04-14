@@ -1,47 +1,26 @@
 var liftit = require('liftit-common');
 
 <app>
-  <div class='col'>
-    <table>
-      <thead>
-        <tr>
-          <th>W</tth>
-          <th each={ lb in liftit.config.plates }>
-            {lb}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr each={w in weights}>
-          <td>{ w.weight }</td>
-          <td each={ lb in liftit.config.plates }>
-            {w.map[lb] }
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class='col'>
-    <table>
-      <thead>
-        <tr>
-          <th>W</tth>
-          <th each={ lb in [0.6,0.65,0.7,0.75,0.80,0.85,0.9,0.95] }>
-            {lb*100}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr each={f in fractions}>
-          <td>{ f.weight }</td>
-          <td each={ p,v in f.percent }>
-            { v }
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <div class='col' each={cols}>
+      <table>
+        <thead>
+          <tr class='thick--bottom'>
+            <th>W</tth>
+            <th each={ lb in liftit.config.plates }>
+              {lb}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr each={w in weights}>
+            <td class='thick--right'>{ w.weight }</td>
+            <td each={ lb in liftit.config.plates }>
+              {w.map[lb] }
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
 
   <pre>{ JSON.stringify(vm, null, 4) }</pre>
@@ -50,9 +29,15 @@ var liftit = require('liftit-common');
       font-size: 11px;
     }
 
+    .row {
+      overflow: hidden;
+    }
+
     .col {
       float: left;
       margin-left: 10px;
+        margin-bottom: 10px;
+
     }
 
     table {
@@ -64,23 +49,42 @@ var liftit = require('liftit-common');
       text-align: center;
       border: 1px solid #eee;
       padding: 4px;
+      width: 18px;
+    }
+
+    .thick--bottom {
+      border-bottom: 2px solid #aaa;
+    }
+
+    .thick--right {
+      border-right: 2px solid #aaa;
     }
   </style>
   <script>
     var self = this;
     this.liftit = liftit;
 
-    this.weights = [];
+    this.cols = [];
 
-    this.fractions = [];
-
-    function pushWeight(weight) {
-      var w = liftit.plates(weight);
-      w.weight = weight;
-      self.weights.push(w);
+    function Data() {
+      this.weights = [];
+      this.fractions = [];
     }
 
-    function pushFraction(weight) {
+    function pushWeight(col, weight) {
+      var w = liftit.plates(weight);
+      w.weight = weight;
+
+      if(!self.cols[col]) {
+        self.cols[col] = new Data();
+      }
+
+      console.log(self.cols[col])
+
+      self.cols[col].weights.push(w);
+    }
+
+    function pushFraction(col, weight) {
       var f = {};
       f.weight = weight;
       f.percent = {};
@@ -89,14 +93,30 @@ var liftit = require('liftit-common');
         f.percent[w] = liftit.roundTo(weight*w, 5);
       });
 
-      console.log(f.percent)
+      if(!self.cols[col]) {
+        self.cols[col] = new Data();
+      }
 
-      self.fractions.push(f);
+      self.cols[col].fractions.push(f);
     }
 
-    for(var i=100; i<450; i+=5) {
-      pushWeight(i);
-      pushFraction(i);
+    function range(start, end, step, cb) {
+      var i=start;
+      for(i=start;i<end;i+=step) {
+        cb(i);
+      }
     }
+
+    var colcount = 0;
+    range(45, 475, 45, function(inc) {
+
+      console.log(inc)
+      range(inc, inc + (5*10), 5, function(i) {
+        pushWeight(colcount, i);
+        pushFraction(colcount, i);
+      });
+
+      colcount ++;
+    });
   </script>
 </app>
