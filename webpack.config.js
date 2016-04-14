@@ -3,6 +3,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: {
     "full": "./app/full/entry.js",
+    "spreadsheet": "./app/spreadsheet/entry.js",
     "531bbb": "./app/531bbb/entry.js"
   },
   output: {
